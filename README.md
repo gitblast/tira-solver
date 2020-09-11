@@ -4,7 +4,7 @@ Algorithms and data structures student project.
 
 ## Documentation
 
-[Project definition](https://github.com/gitblast/tira-solver/documentation/definition.md)
+[Project definition](https://github.com/gitblast/tira-solver/blob/master/documentation/definition.md)
 
 ## Usage
 
@@ -22,6 +22,6 @@ Checkstyle:
 
 ## Weekly reports
 
-- [Week 1](https://github.com/gitblast/tira-solver/documentation/weekly1.md)
+- [Week 1](https://github.com/gitblast/tira-solver/blob/master/documentation/weekly1.md)
 
-- [Week 2](https://github.com/gitblast/tira-solver/documentation/weekly2.md)
+- [Week 2](https://github.com/gitblast/tira-solver/blob/master/documentation/weekly2.md)

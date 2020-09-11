@@ -10,15 +10,15 @@ Algorithms and data structures student project.
 
 Run tests:
 
-> `mvn test`
+`mvn test`
 
 Test coverage:
 
-> `mvn org.pitest:pitest-maven:mutationCoverage`
+`mvn org.pitest:pitest-maven:mutationCoverage`
 
 Checkstyle:
 
-> `mvn jxr:jxr checkstyle:checkstyle`
+`mvn jxr:jxr checkstyle:checkstyle`
 
 ## Weekly reports
 

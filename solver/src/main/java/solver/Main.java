@@ -3,6 +3,7 @@ package solver;
 import java.util.Arrays;
 import solver.domain.Trainer;
 import solver.domain.Rules;
+import solver.ui.TextUI;
 
 public class Main {
 
@@ -28,15 +29,19 @@ public class Main {
         
         Rules rps = new Rules("Rock-Paper-Scissors", rockPaperScissorMap, rockPaperScissorLabels);
         
-        Trainer t = new Trainer(rps, strategies);
+        Trainer t = new Trainer(rps);
+//        
+//        t.train(10000);
+//        
+//        double[] d = t.getOptimalStrategy();
+//        
+//        System.out.println("iteraatioita: " + t.getTrainIterations());
+//        System.out.println("");
+//        System.out.println("strategia: " + Arrays.toString(d));
         
-        t.train(10000);
+        TextUI ui = new TextUI();
         
-        double[] d = t.getOptimalStrategy();
-        
-        System.out.println("iteraatioita: " + t.getTrainIterations());
-        System.out.println("");
-        System.out.println("strategia: " + Arrays.toString(d));
+        ui.start();
     }
     
 }

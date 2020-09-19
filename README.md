@@ -10,18 +10,20 @@ Algorithms and data structures student project.
 
 Run tests:
 
-> `mvn test`
+`mvn test`
 
 Test coverage:
 
-> `mvn org.pitest:pitest-maven:mutationCoverage`
+`mvn org.pitest:pitest-maven:mutationCoverage`
 
 Checkstyle:
 
-> `mvn jxr:jxr checkstyle:checkstyle`
+`mvn jxr:jxr checkstyle:checkstyle`
 
 ## Weekly reports
 
 - [Week 1](https://github.com/gitblast/tira-solver/blob/master/documentation/weekly1.md)
 
 - [Week 2](https://github.com/gitblast/tira-solver/blob/master/documentation/weekly2.md)
+
+- [Week 3](https://github.com/gitblast/tira-solver/blob/master/documentation/weekly3.md)

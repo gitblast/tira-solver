@@ -46,4 +46,10 @@ public class Rules {
     public int getActionCount() {
         return outcomeMap.length;
     }
+
+    public String[] getLabels() {
+        return labels;
+    }
+    
+    
 }

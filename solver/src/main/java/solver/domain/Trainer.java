@@ -63,7 +63,7 @@ public class Trainer {
      * Only positive regret is included in the calculations.
      * 
      * Strategy here means an array of probabilities for choosing each possible action.
-     * If no positive getNregret exists, an array of evenly distributed probabilities is returned.
+     * If no positive regret exists, an array of evenly distributed probabilities is returned.
      * 
      * @return an array of doubles representing probabilities.
      */
@@ -143,7 +143,7 @@ public class Trainer {
     
     /**
      * Train the algorithm against itself.
-     * @param firstAction index of the first action (chosen in 'train' function).
+     * @param firstAction index of the first action.
      * @param strategy index of the second action.
      */
     public void trainAgainstSelf(int firstAction, double[] strategy) {
@@ -164,7 +164,7 @@ public class Trainer {
     
     /**
      * Train the algorithm against opponent's strategies.
-     * @param ourAction index of the first action (chosen in 'train' function).
+     * @param ourAction index of the first action.
      */
     public void trainAgainstOpponents(int ourAction) {
         int opponentCount = opponentStrategies.length;
@@ -256,6 +256,10 @@ public class Trainer {
         
         return optimalStrategy;
     }
+    
+    public Rules getRules() {
+        return rules;
+    }
 
     public int getTrainIterations() {
         return trainIterations;
@@ -264,6 +268,12 @@ public class Trainer {
     public double[][] getOpponentStrategies() {
         return opponentStrategies;
     }
+
+    public void setOpponentStrategies(double[][] opponentStrategies) {
+        this.opponentStrategies = opponentStrategies;
+    }
+    
+    
 
     public void setOverallRegrets(int[] overallRegrets) {
         this.overallRegrets = overallRegrets;

@@ -6,6 +6,10 @@ Algorithms and data structures student project.
 
 [Project definition](https://github.com/gitblast/tira-solver/blob/master/documentation/definition.md)
 
+[Implementation](https://github.com/gitblast/tira-solver/blob/master/documentation/implementation.md)
+
+[Testing](https://github.com/gitblast/tira-solver/blob/master/documentation/testing.md)
+
 ## Usage
 
 Run tests:
@@ -27,3 +31,5 @@ Checkstyle:
 - [Week 2](https://github.com/gitblast/tira-solver/blob/master/documentation/weekly2.md)
 
 - [Week 3](https://github.com/gitblast/tira-solver/blob/master/documentation/weekly3.md)
+
+- [Week 4](https://github.com/gitblast/tira-solver/blob/master/documentation/weekly3.md)

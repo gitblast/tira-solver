@@ -1,13 +1,14 @@
 package solver.domain;
 
-import java.util.Arrays;
-
 public class InfoSet {
     private double[] overallRegrets;
     private double[] overallStrategyWeights;
     private int actionCount;
     private int trainIterations;
 
+    /**
+     * Constructor.
+     */
     public InfoSet() {
         this.actionCount = 2;
         this.overallRegrets = new double[actionCount];
@@ -15,6 +16,11 @@ public class InfoSet {
         this.trainIterations = 0;
     } 
     
+    /**
+     * Adds to the cumulative regret of the information set.
+     * @param actionIndex index of the action.
+     * @param sumToAdd sum to add to the cumulative regret.
+     */
     public void addRegret(int actionIndex, double sumToAdd) {
         overallRegrets[actionIndex] += sumToAdd;
     }
@@ -80,6 +86,10 @@ public class InfoSet {
         return strategy;
     }
     
+    /**
+     * Calculates optimal strategy for the information set.
+     * @return array of doubles representing probabilities.
+     */
     public double[] getOptimalStrategy() {
         double sum = 0;
         double[] strat = new double[overallStrategyWeights.length];

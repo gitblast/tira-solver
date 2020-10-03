@@ -1,25 +1,40 @@
 package solver.domain;
 
-import java.util.Arrays;
-import java.util.HashMap;
+import solver.datastruct.InfoSetMap;
 
 public class CFRTrainer {
-    private HashMap<String, InfoSet> infoSets;
+    private InfoSetMap infoSets;
     private String[] actions;
 
+    /**
+     * Constructor.
+     */
     public CFRTrainer() {
-        this.infoSets = new HashMap<>();
+        this.infoSets = new InfoSetMap();
         this.actions = new String[] {"B", "C"};
     }
     
+    /**
+     * Returns the InfoSet stored with given String. If no InfoSet is found, one is created.
+     * @param cardWithHistory String of player's card appended with current history string.
+     * @return InfoSet matching search string.
+     */
     public InfoSet getInfoSet(String cardWithHistory) {
-        if (!infoSets.containsKey(cardWithHistory)) {            
+        if (infoSets.get(cardWithHistory) == null) {            
             infoSets.put(cardWithHistory, new InfoSet());
         }
         
         return infoSets.get(cardWithHistory);
     }
     
+    /**
+     * Recursive counterfactual regret minimization algorithm.
+     * @param cards Array of possible cards.
+     * @param history String representation of the game history so far.
+     * @param reachProbs Array of doubles representing the reach probabilities to the current node for each player.
+     * @param activePlayerIndex Index of the player with turn.
+     * @return counterfactual value of the current node.
+     */
     public double CFR(String[] cards, String history, double[] reachProbs, int activePlayerIndex) {
         if (KuhnPoker.isTerminalState(history)) {
             return KuhnPoker.getOutcome(history, cards) * 1.0;
@@ -61,7 +76,11 @@ public class CFRTrainer {
     }
     
     
-    
+    /**
+     * Trains the algorithm against itself.
+     * @param iterations number of training iterations.
+     * @return expected value for player 1.
+     */
     public double train(int iterations) {
         double value = 0;
         
@@ -76,7 +95,7 @@ public class CFRTrainer {
         return value;
     }
 
-    public HashMap<String, InfoSet> getInfoSets() {
+    public InfoSetMap getInfoSets() {
         return infoSets;
     }
     

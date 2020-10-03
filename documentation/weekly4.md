@@ -1,4 +1,4 @@
-# Weekly report 4
+# Weekly report #4
 
 This week I tried doing some research on how to make the project more complex by implementing the counterfactual regret algorithm. I read a bunch on the subject and will be trying to get it running next week.
 

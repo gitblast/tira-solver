@@ -1,6 +1,8 @@
 # Implementation
 
-The project uses a regret matching algorithm to solve simple one shot games.
+The project contains two algorithms: Regret matching and counterfactual regret minimization (which uses regret matching internally).
+
+The counterfactual regret matching algorithm can be used to solve sequential, imperfect information games such as poker. The regret matching algorithm can solve simple one shot games such as Rock-Paper-Scissors.
 
 ## Regret matching
 
@@ -19,3 +21,11 @@ The choice of the algorithm will then be compared with the choice of the opponen
 These calculated regrets are added to the cumulative regrets after each training iteration. This cumulated regret is used to calculate the strategy discussed earlier in this document. This is done by dividing the positive regret of each action with the total amount of positive regret. So for example if the cumulative regrets for rock, paper and scissors would be 1, 2 and 3, the strategy would be 1/6 rock, 2/6, paper and 3/6 scissors. If no positive regret exists (like in the first iteration), an even distribution is used.
 
 This loop is then repeated for as long as wanted. The more training iterations are made, the closer the results of the algorithm are to game theory optimal (the algorithm converges to Nash equilibrium). After the training iterations, the optimal strategy can be calculated by dividing the cumulative strategies for each action with the number of training iterations.
+
+## Counterfactual regret minimization (CFR)
+
+The CFR -algorithm can be used to solve sequential imperfect information games. The algorithm is used in all the modern solvers for poker.
+
+In sequential games there are several possible game states (whereas in one shot games the game is over after one action). These states together with any additional information the player has (ie. his own cards in poker) form so called information sets. For each possible combination of game state and player-specific information, an information set exists.
+
+The CFR uses regret matching to calculate the optimal strategy for each individual information set. For very simple games this can be very fast, for example the implemented CFR solves Kuhn's poker, a game with only 12 information sets, in a fraction of a second. However as the complexity of the game increases, the time (and memory requirements) for the algorithm rapidly grow. For example, in Texas Holdem limit heads up, there are 10^14 information sets and solving the game even with very powerful computers take several days.

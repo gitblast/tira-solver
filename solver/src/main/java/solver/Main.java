@@ -2,6 +2,9 @@ package solver;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import solver.datastruct.InfoSetMap;
+import solver.datastruct.LinkedPairList;
+import solver.datastruct.LinkedPairList.Node;
 import solver.domain.CFRTrainer;
 import solver.domain.InfoSet;
 import solver.domain.Trainer;
@@ -41,7 +44,8 @@ public class Main {
 //        System.out.println("iteraatioita: " + t.getTrainIterations());
 //        System.out.println("");
 //        System.out.println("strategia: " + Arrays.toString(d));
-        
+
+
         TextUI ui = new TextUI();
         
         // ui.start();
@@ -56,17 +60,31 @@ public class Main {
         System.out.println("pelaajan 1 ev: " + (player1value / iter));
         System.out.println("");
         
-        HashMap<String, InfoSet> infoSets = cfr.getInfoSets();
+        InfoSetMap infoSets = cfr.getInfoSets();
         
         System.out.println("ACT : [BET , PASS]");
         
-        for (String key : infoSets.keySet()) {
-            InfoSet i = infoSets.get(key);
-            
-            double[] d = i.getOptimalStrategy();
-            
-            System.out.println(key + " : " + Arrays.toString(d));
+        LinkedPairList[] list = infoSets.getValues();
+        
+        for (int i = 0; i < list.length; i++) {
+            if (list[i] != null) {
+                Node node = list[i].getHead();
+                
+                while (node != null) {
+                    System.out.println(node.getKey() + " : " + Arrays.toString(node.getValue().getOptimalStrategy()));
+                    
+                    node = node.getNext();
+                }
+            }
         }
+        
+//        for (String key : infoSets.keySet()) {
+//            InfoSet i = infoSets.get(key);
+//            
+//            double[] d = i.getOptimalStrategy();
+//            
+//            System.out.println(key + " : " + Arrays.toString(d));
+//        }
     }
     
 }

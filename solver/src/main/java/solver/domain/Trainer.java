@@ -249,7 +249,6 @@ public class Trainer {
         
         double[] optimalStrategy = new double[actionCount];
         
-        // calculate the optimal s
         for (int i = 0; i < actionCount; i++) {
             optimalStrategy[i] = overallStrategyWeights[i] / trainIterations;
         }

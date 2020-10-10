@@ -31,9 +31,13 @@ public class InfoSetMapTest {
         assertEquals(length, map.getValues().length);
         
         
-        for (int i = 0; i <= length * 0.75; i++) {
+        for (int i = 0; i < length * 0.75; i++) {
             map.put("key" + i, null);
         }
+        
+        assertEquals(length, map.getValues().length);
+        
+        map.put("over75percent", null);
         
         
         assertEquals(length * 2, map.getValues().length);

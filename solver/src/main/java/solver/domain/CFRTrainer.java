@@ -4,14 +4,15 @@ import solver.datastruct.InfoSetMap;
 
 public class CFRTrainer {
     private InfoSetMap infoSets;
-    private String[] actions;
+    private Game game;
 
     /**
      * Constructor.
+     * @param game game to use.
      */
-    public CFRTrainer() {
+    public CFRTrainer(Game game) {
         this.infoSets = new InfoSetMap();
-        this.actions = new String[] {"B", "C"};
+        this.game = game;
     }
     
     /**
@@ -36,18 +37,16 @@ public class CFRTrainer {
      * @return counterfactual value of the current node.
      */
     public double CFR(String[] cards, String history, double[] reachProbs, int activePlayerIndex) {
-        if (KuhnPoker.isTerminalState(history)) {
-            return KuhnPoker.getOutcome(history, cards) * 1.0;
+        if (game.isTerminalState(history)) {
+            return game.getOutcome(history, cards) * 1.0;
         }
         
         String ownCard = cards[activePlayerIndex];
         
         InfoSet infoSet = getInfoSet(ownCard + history);
         
-        double[] strategy = infoSet.getNewStrategy(reachProbs[activePlayerIndex]);
-        
-        int opponentIndex = activePlayerIndex == 0 ? 1 : 0;
-        
+        double[] strategy = infoSet.getNewStrategy(reachProbs[activePlayerIndex]);        
+        int opponentIndex = activePlayerIndex == 0 ? 1 : 0;        
         double[] counterfactualValues = new double[strategy.length];
         
         for (int i = 0; i < strategy.length; i++) {
@@ -57,21 +56,17 @@ public class CFRTrainer {
                 newReachProbs[j] = reachProbs[j];
             }
             
-            newReachProbs[activePlayerIndex] *= strategy[i];
-            
-            counterfactualValues[i] = -1 * CFR(cards, history + actions[i], newReachProbs, opponentIndex);
-        }
-        
-        double overallValue = 0;
-        
+            newReachProbs[activePlayerIndex] *= strategy[i];            
+            counterfactualValues[i] = -1 * CFR(cards, history + game.getPossibleActions()[i], newReachProbs, opponentIndex);
+        }        
+        double overallValue = 0;        
         for (int i = 0; i < counterfactualValues.length; i++) {
             overallValue += counterfactualValues[i] * strategy[i];
         }
         
         for (int i = 0; i < counterfactualValues.length; i++) {
             infoSet.addRegret(i, reachProbs[opponentIndex] * (counterfactualValues[i] - overallValue));
-        }
-        
+        }        
         return overallValue;
     }
     
@@ -84,8 +79,8 @@ public class CFRTrainer {
     public double train(int iterations) {
         double value = 0;
         
-        for(int i = 0; i < iterations; i++) {
-            String[] cards = KuhnPoker.getRandomCards();
+        for (int i = 0; i < iterations; i++) {
+            String[] cards = game.getRandomCards();
             String history = "";
             double[] reachProbs = new double[] {1, 1};          
             value += CFR(cards, history, reachProbs, 0);
@@ -97,6 +92,10 @@ public class CFRTrainer {
 
     public InfoSetMap getInfoSets() {
         return infoSets;
+    }
+
+    public Game getGame() {
+        return game;
     }
     
     

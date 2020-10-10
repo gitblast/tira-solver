@@ -35,3 +35,5 @@ Checkstyle:
 - [Week 4](https://github.com/gitblast/tira-solver/blob/master/documentation/weekly4.md)
 
 - [Week 5](https://github.com/gitblast/tira-solver/blob/master/documentation/weekly5.md)
+
+- [Week 6](https://github.com/gitblast/tira-solver/blob/master/documentation/weekly6.md)

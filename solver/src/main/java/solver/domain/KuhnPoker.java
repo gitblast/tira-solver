@@ -4,9 +4,19 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class KuhnPoker {
+public class KuhnPoker implements Game {
+    String[] actions;
+
+    public KuhnPoker() {
+        this.actions = new String[] { "B", "C" };
+    }
     
-    public static String[] getRandomCards() {  
+    
+    public String[] getPossibleActions() {
+        return actions;
+    }
+    
+    public String[] getRandomCards() {  
         String[] cards = new String[] {"K", "Q", "J"};
         List<String> list = Arrays.asList(cards);
         
@@ -16,7 +26,7 @@ public class KuhnPoker {
     }
     
     
-    public static boolean isTerminalState(String history) {
+    public boolean isTerminalState(String history) {
         return history.equals("BC")
                 || history.equals("CC")
                 || history.equals("CBC")
@@ -24,7 +34,7 @@ public class KuhnPoker {
                 || history.equals("CBB");
     }
     
-    public static int getOutcome(String history, String[] cards) {
+    public int getOutcome(String history, String[] cards) {
         // if opponent folds, player wins 1
         if (history.equals("CBC") || history.equals("BC")) {
             return 1;

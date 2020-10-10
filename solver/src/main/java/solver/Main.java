@@ -6,10 +6,13 @@ import solver.datastruct.InfoSetMap;
 import solver.datastruct.LinkedPairList;
 import solver.datastruct.LinkedPairList.Node;
 import solver.domain.CFRTrainer;
+import solver.domain.Game;
 import solver.domain.InfoSet;
+import solver.domain.KuhnPoker;
 import solver.domain.Trainer;
 import solver.domain.Rules;
 import solver.ui.TextUI;
+import solver.util.Tester;
 
 public class Main {
 
@@ -45,12 +48,17 @@ public class Main {
 //        System.out.println("");
 //        System.out.println("strategia: " + Arrays.toString(d));
 
+        Tester test = new Tester();
+        
+        test.run();
 
         TextUI ui = new TextUI();
         
+        Game kuhn = new KuhnPoker();
+        
         // ui.start();
         int iter = 100000;
-        CFRTrainer cfr = new CFRTrainer();
+        CFRTrainer cfr = new CFRTrainer(kuhn);
         long s = System.nanoTime();
         double player1value = cfr.train(iter);
         long l = System.nanoTime();

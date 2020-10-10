@@ -4,7 +4,6 @@ public class InfoSet {
     private double[] overallRegrets;
     private double[] overallStrategyWeights;
     private int actionCount;
-    private int trainIterations;
 
     /**
      * Constructor.
@@ -13,7 +12,6 @@ public class InfoSet {
         this.actionCount = 2;
         this.overallRegrets = new double[actionCount];
         this.overallStrategyWeights = new double[actionCount];        
-        this.trainIterations = 0;
     } 
     
     /**
@@ -63,7 +61,6 @@ public class InfoSet {
             }
         }
         
-        
         if (positiveRegretTotal > 0) {
             // if positive regret exists, use normalized positive regrets
             for (int i = 0; i < strategy.length; i++) {
@@ -76,7 +73,6 @@ public class InfoSet {
             strategy = getEvenlyDistributedStrategy(actionCount);
             
         }    
-        
         
         for (int i = 0; i < strategy.length; i++) {
             // keep track of overall strategy weighed by the reach probabilities
@@ -108,4 +104,30 @@ public class InfoSet {
         
         return strat;
     }
+    
+    
+
+    public int getActionCount() {
+        return actionCount;
+    }
+
+    public double[] getOverallRegrets() {
+        return overallRegrets;
+    }
+
+    public double[] getOverallStrategyWeights() {
+        return overallStrategyWeights;
+    }
+
+    public void setOverallStrategyWeights(double[] overallStrategyWeights) {
+        this.overallStrategyWeights = overallStrategyWeights;
+    }
+    
+    
+
+    public void setOverallRegrets(double[] overallRegrets) {
+        this.overallRegrets = overallRegrets;
+    }
+    
+    
 }

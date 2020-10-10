@@ -43,4 +43,9 @@ public class RulesTest {
     public void getActionCountReturnsAmountOfActions() {
         assertEquals(rockPaperScissorLabels.length, r.getActionCount());
     }
+    
+    @Test
+    public void getLabelsReturnsLabels() {
+        assertArrayEquals(rockPaperScissorLabels, r.getLabels());
+    }
 }

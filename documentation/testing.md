@@ -4,7 +4,7 @@
 
 `mvn test`
 
-Almost everything except the ui and the ai are comprehesively unit tested.
+Almost everything except the ui is comprehesively unit tested.
 
 ## Mutation testing
 

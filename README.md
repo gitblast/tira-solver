@@ -16,6 +16,10 @@ Run tests:
 
 `mvn test`
 
+Generate jar:
+
+`mvn package`
+
 Test coverage:
 
 `mvn org.pitest:pitest-maven:mutationCoverage`

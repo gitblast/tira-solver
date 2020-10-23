@@ -1,18 +1,6 @@
 package solver;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import solver.datastruct.InfoSetMap;
-import solver.datastruct.LinkedPairList;
-import solver.datastruct.LinkedPairList.Node;
-import solver.domain.CFRTrainer;
-import solver.domain.Game;
-import solver.domain.InfoSet;
-import solver.domain.KuhnPoker;
-import solver.domain.Trainer;
-import solver.domain.Rules;
-import solver.ui.TextUI;
-import solver.util.Tester;
+import solver.ui.GUI;
 
 public class Main {
 
@@ -20,79 +8,7 @@ public class Main {
      * Main method.
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        int[][] rockPaperScissorMap = {
-            {0, -1, 1},
-            {1, 0, -1},
-            {-1, 1, 0}
-        };
-        
-        String[] rockPaperScissorLabels = { "rock", "paper", "scissors" };
-        
-        double[][] strategies = { 
-            { 1.0, 0, 0 },
-            { 0, 0, 1.0 },
-            { 0, 1.0, 0 }
-        };
-        
-        
-        Rules rps = new Rules("Rock-Paper-Scissors", rockPaperScissorMap, rockPaperScissorLabels);
-        
-        Trainer t = new Trainer(rps);
-//        
-//        t.train(10000);
-//        
-//        double[] d = t.getOptimalStrategy();
-//        
-//        System.out.println("iteraatioita: " + t.getTrainIterations());
-//        System.out.println("");
-//        System.out.println("strategia: " + Arrays.toString(d));
-
-        Tester test = new Tester();
-        
-        test.run();
-
-        TextUI ui = new TextUI();
-        
-        Game kuhn = new KuhnPoker();
-        
-        // ui.start();
-        int iter = 100000;
-        CFRTrainer cfr = new CFRTrainer(kuhn);
-        long s = System.nanoTime();
-        double player1value = cfr.train(iter);
-        long l = System.nanoTime();
-        
-        System.out.println("valmis! aikaa meni " + (l-s)/1e9 + " sekuntia");
-        System.out.println("");
-        System.out.println("pelaajan 1 ev: " + (player1value / iter));
-        System.out.println("");
-        
-        InfoSetMap infoSets = cfr.getInfoSets();
-        
-        System.out.println("ACT : [BET , PASS]");
-        
-        LinkedPairList[] list = infoSets.getValues();
-        
-        for (int i = 0; i < list.length; i++) {
-            if (list[i] != null) {
-                Node node = list[i].getHead();
-                
-                while (node != null) {
-                    System.out.println(node.getKey() + " : " + Arrays.toString(node.getValue().getOptimalStrategy()));
-                    
-                    node = node.getNext();
-                }
-            }
-        }
-        
-//        for (String key : infoSets.keySet()) {
-//            InfoSet i = infoSets.get(key);
-//            
-//            double[] d = i.getOptimalStrategy();
-//            
-//            System.out.println(key + " : " + Arrays.toString(d));
-//        }
+    public static void main(String[] args) {       
+          GUI.main(args);
     }
-    
 }

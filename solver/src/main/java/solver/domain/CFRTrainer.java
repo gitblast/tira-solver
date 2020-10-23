@@ -5,6 +5,9 @@ import solver.datastruct.InfoSetMap;
 public class CFRTrainer {
     private InfoSetMap infoSets;
     private Game game;
+    private int trainIterations;
+    private double totalValue;
+    
 
     /**
      * Constructor.
@@ -13,6 +16,8 @@ public class CFRTrainer {
     public CFRTrainer(Game game) {
         this.infoSets = new InfoSetMap();
         this.game = game;
+        this.trainIterations = 0;
+        this.totalValue = 0;
     }
     
     /**
@@ -84,8 +89,11 @@ public class CFRTrainer {
             String history = "";
             double[] reachProbs = new double[] {1, 1};          
             value += CFR(cards, history, reachProbs, 0);
+            trainIterations++;
             
         }
+        
+        totalValue += value;
         
         return value;
     }
@@ -97,6 +105,17 @@ public class CFRTrainer {
     public Game getGame() {
         return game;
     }
+
+    public int getTrainIterations() {
+        return trainIterations;
+    }
+
+    public double getTotalValue() {
+        return totalValue;
+    }
+    
+    
+    
     
     
 }

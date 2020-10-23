@@ -122,11 +122,7 @@ public class Trainer {
      * @return the index of the chosen action.
      */
     public int chooseAction(double[] strategy) {
-        /**
-         * @TODO implement random !!!
-         */
-        
-        double num = new Random().nextDouble();
+        double num = 1.0 * System.nanoTime() % 10000 / 10000; // poor man's random generator
         
         double total = 0;
         
@@ -280,6 +276,10 @@ public class Trainer {
 
     public void setOverallStrategyWeights(double[] overallStrategyWeights) {
         this.overallStrategyWeights = overallStrategyWeights;
+    }
+
+    public int[] getOverallRegrets() {
+        return overallRegrets;
     }
     
     
